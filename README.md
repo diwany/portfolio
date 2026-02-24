@@ -1,36 +1,162 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mohamed Diwany — Portfolio Website
 
-## Getting Started
+A modern, animated, and responsive portfolio website built with **Next.js**, **Tailwind CSS**, and **Framer Motion**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| **Next.js 16** (App Router) | React framework with SSR/SSG |
+| **TypeScript** | Type safety |
+| **Tailwind CSS v4** | Utility-first styling |
+| **Framer Motion** | Scroll & interaction animations |
+| **next-themes** | Dark/light mode |
+| **React Icons** | Icon library |
+| **react-type-animation** | Typing effect in hero |
+| **react-intersection-observer** | Scroll-triggered animations |
+
+---
+
+## 📁 Project Structure
+
+```
+portfolio/
+├── public/
+│   ├── projects/          # Project screenshot images
+│   └── resume.pdf         # Downloadable resume
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── contact/
+│   │   │       └── route.ts    # Contact form API endpoint
+│   │   ├── globals.css         # Global styles & theme
+│   │   ├── layout.tsx          # Root layout with metadata
+│   │   ├── page.tsx            # Main page
+│   │   ├── sitemap.ts          # Auto-generated sitemap
+│   │   └── robots.ts           # robots.txt config
+│   └── components/
+│       ├── About.tsx           # About section
+│       ├── Contact.tsx         # Contact form & socials
+│       ├── Footer.tsx          # Footer
+│       ├── Header.tsx          # Sticky navigation
+│       ├── Hero.tsx            # Hero with particles
+│       ├── ParticleBackground.tsx # Canvas particle animation
+│       ├── Projects.tsx        # Project cards
+│       ├── SectionWrapper.tsx  # Scroll animation wrapper
+│       ├── Skills.tsx          # Skills grid
+│       └── ThemeProvider.tsx   # Dark/light theme
+├── package.json
+├── tsconfig.json
+└── next.config.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
+- Node.js 18+ & npm
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Clone the repository
+git clone https://github.com/mohameddiwany/portfolio.git
+cd portfolio
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Install dependencies
+npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Start development server
+npm run dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Build for Production
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm start
+```
+
+---
+
+## 🌐 Deployment (Vercel)
+
+1. Push your code to GitHub
+2. Go to [vercel.com](https://vercel.com)
+3. Import your repository
+4. Vercel auto-detects Next.js — click **Deploy**
+5. Your site is live!
+
+### Environment Variables (Optional)
+
+If you integrate an email service for the contact form:
+
+```
+RESEND_API_KEY=your_resend_api_key
+```
+
+---
+
+## ✏️ How to Update
+
+### Change personal info
+- Edit text content in the component files under `src/components/`
+
+### Add new projects
+- Open `src/components/Projects.tsx`
+- Add a new object to the `projects` array
+
+### Update skills
+- Open `src/components/Skills.tsx`
+- Modify the `skillCategories` array
+
+### Add your resume
+- Place your resume PDF at `public/resume.pdf`
+
+### Add project images
+- Place screenshots in `public/projects/`
+- Reference them in the project objects
+
+### Update social links
+- Search for `mohameddiwany` across component files and update URLs
+
+---
+
+## 🎨 Customization
+
+### Colors
+Edit CSS custom properties in `src/app/globals.css`:
+- `--color-primary`: Main accent (indigo)
+- `--color-accent`: Secondary accent (cyan)
+- Light/dark mode variables in `:root` and `.dark`
+
+### Fonts
+Change Google Fonts in `src/app/layout.tsx`
+
+---
+
+## 📧 Contact Form
+
+The contact form posts to `/api/contact`. Currently it logs submissions to the console.
+
+To send real emails, integrate one of:
+- [Resend](https://resend.com) (recommended)
+- [SendGrid](https://sendgrid.com)
+- [Nodemailer](https://nodemailer.com)
+
+See `src/app/api/contact/route.ts` for integration instructions.
+
+---
+
+## 📄 License
+
+MIT — feel free to use and modify.
+
+---
+
+Built with ❤️ by **Mohamed Diwany**
