@@ -1,6 +1,8 @@
 # Mohamed Diwany — Portfolio Website
 
-A modern, animated, and responsive portfolio website built with **Next.js**, **Tailwind CSS**, and **Framer Motion**.
+A modern, animated, and responsive portfolio website built with **Next.js**, **Tailwind CSS**, and **Framer Motion**. Features an interactive WebGL fluid cursor effect.
+
+**Live:** [diwany.me](https://diwany.me)
 
 ---
 
@@ -12,6 +14,7 @@ A modern, animated, and responsive portfolio website built with **Next.js**, **T
 | **TypeScript** | Type safety |
 | **Tailwind CSS v4** | Utility-first styling |
 | **Framer Motion** | Scroll & interaction animations |
+| **WebGL Fluid Simulation** | Interactive cursor background effect |
 | **next-themes** | Dark/light mode |
 | **React Icons** | Icon library |
 | **react-type-animation** | Typing effect in hero |
@@ -24,8 +27,7 @@ A modern, animated, and responsive portfolio website built with **Next.js**, **T
 ```
 portfolio/
 ├── public/
-│   ├── projects/          # Project screenshot images
-│   └── resume.pdf         # Downloadable resume
+│   └── projects/          # Project screenshot images
 ├── src/
 │   ├── app/
 │   │   ├── api/
@@ -36,17 +38,20 @@ portfolio/
 │   │   ├── page.tsx            # Main page
 │   │   ├── sitemap.ts          # Auto-generated sitemap
 │   │   └── robots.ts           # robots.txt config
-│   └── components/
-│       ├── About.tsx           # About section
-│       ├── Contact.tsx         # Contact form & socials
-│       ├── Footer.tsx          # Footer
-│       ├── Header.tsx          # Sticky navigation
-│       ├── Hero.tsx            # Hero with particles
-│       ├── ParticleBackground.tsx # Canvas particle animation
-│       ├── Projects.tsx        # Project cards
-│       ├── SectionWrapper.tsx  # Scroll animation wrapper
-│       ├── Skills.tsx          # Skills grid
-│       └── ThemeProvider.tsx   # Dark/light theme
+│   ├── components/
+│   │   ├── About.tsx           # About section
+│   │   ├── Contact.tsx         # Contact form & socials
+│   │   ├── FluidCursor.tsx     # WebGL fluid cursor component
+│   │   ├── Footer.tsx          # Footer
+│   │   ├── Header.tsx          # Sticky navigation
+│   │   ├── Hero.tsx            # Hero with fluid background
+│   │   ├── ParticleBackground.tsx # Canvas particle animation
+│   │   ├── Projects.tsx        # Project cards
+│   │   ├── SectionWrapper.tsx  # Scroll animation wrapper
+│   │   ├── Skills.tsx          # Skills grid
+│   │   └── ThemeProvider.tsx   # Dark/light theme
+│   └── hooks/
+│       └── useFluidCursor.ts   # WebGL fluid simulation hook
 ├── package.json
 ├── tsconfig.json
 └── next.config.ts
@@ -63,7 +68,7 @@ portfolio/
 
 ```bash
 # Clone the repository
-git clone https://github.com/mohameddiwany/portfolio.git
+git clone https://github.com/diwany/portfolio.git
 cd portfolio
 
 # Install dependencies
@@ -123,7 +128,7 @@ RESEND_API_KEY=your_resend_api_key
 - Reference them in the project objects
 
 ### Update social links
-- Search for `mohameddiwany` across component files and update URLs
+- Edit URLs in `Hero.tsx`, `Footer.tsx`, and `Contact.tsx`
 
 ---
 
@@ -131,8 +136,8 @@ RESEND_API_KEY=your_resend_api_key
 
 ### Colors
 Edit CSS custom properties in `src/app/globals.css`:
-- `--color-primary`: Main accent (indigo)
-- `--color-accent`: Secondary accent (cyan)
+- `--color-primary`: Main accent (red)
+- `--color-accent`: Secondary accent
 - Light/dark mode variables in `:root` and `.dark`
 
 ### Fonts
@@ -159,4 +164,4 @@ MIT — feel free to use and modify.
 
 ---
 
-Built with ❤️ by **Mohamed Diwany**
+Built with ❤️ by **Diwany**
