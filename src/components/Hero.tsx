@@ -56,7 +56,7 @@ export default function Hero() {
             wrapper="span"
             speed={50}
             repeat={Infinity}
-            className="text-primary"
+            className="gradient-text"
           />
         </motion.div>
 

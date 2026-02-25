@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaHeart } from "react-icons/fa";
-import Image from "next/image";
 
 /**
  * Footer with branding, social links, and navigation.
@@ -20,9 +19,22 @@ export default function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <a href="#home" className="relative inline-block">
-              <Image src="/logo.png" alt="Diwany" width={120} height={40} className="h-10 w-auto" />
-              <div className="absolute inset-0 bg-[#D62424] mix-blend-multiply pointer-events-none" />
+            <a href="#home" className="inline-block -ml-16 -mb-14">
+              <div
+                className="h-36 w-[550px]"
+                style={{
+                  backgroundColor: '#D62424',
+                  WebkitMaskImage: 'url(/logo.png)',
+                  maskImage: 'url(/logo.png)',
+                  WebkitMaskSize: 'contain',
+                  maskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'left center',
+                  maskPosition: 'left center',
+                }}
+                aria-label="Diwany"
+              />
             </a>
             <p className="text-sm text-[var(--text-muted)] mt-2 max-w-xs">
               AI Engineer & Full Stack Developer building the future one line of code at a time.

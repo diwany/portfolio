@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import { HiMenu, HiX } from "react-icons/hi";
 import { BsSun, BsMoon } from "react-icons/bs";
-import Image from "next/image";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -49,16 +48,29 @@ export default function Header() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <motion.a
             href="#home"
-            className="relative inline-block"
+            className="inline-flex items-center -ml-14"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Image src="/logo.png" alt="Diwany" width={120} height={40} className="h-8 md:h-10 w-auto" />
-            <div className="absolute inset-0 bg-[#D62424] mix-blend-multiply pointer-events-none" />
+            <div
+              className="h-32 md:h-40 w-[400px] md:w-[500px]"
+              style={{
+                backgroundColor: '#FFFFFF',
+                WebkitMaskImage: 'url(/logo.png)',
+                maskImage: 'url(/logo.png)',
+                WebkitMaskSize: 'contain',
+                maskSize: 'contain',
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat',
+                WebkitMaskPosition: 'left center',
+                maskPosition: 'left center',
+              }}
+              aria-label="Diwany"
+            />
           </motion.a>
 
           {/* Desktop Navigation */}

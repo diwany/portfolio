@@ -154,13 +154,13 @@ export default function Skills() {
                     viewport={{ once: true }}
                     transition={{ delay: catIdx * 0.1 + skillIdx * 0.05 }}
                     whileHover={{ y: -4, scale: 1.08 }}
-                    className="flex flex-col items-center gap-2 p-3 rounded-xl bg-[var(--bg-secondary)] hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-all duration-300 group cursor-default"
+                    className="flex flex-col items-center justify-center text-center gap-2 p-3 rounded-xl bg-[var(--bg-secondary)] hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-all duration-300 group cursor-default"
                   >
                     <skill.icon
                       className="text-2xl transition-colors duration-300"
                       style={{ color: skill.color }}
                     />
-                    <span className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-primary transition-colors">
+                    <span className="text-xs font-medium text-[var(--text-secondary)] group-hover:text-primary transition-colors text-center leading-tight w-full">
                       {skill.name}
                     </span>
                   </motion.div>
