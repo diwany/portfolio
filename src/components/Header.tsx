@@ -57,9 +57,9 @@ export default function Header() {
             whileTap={{ scale: 0.95 }}
           >
             <div
-              className="h-32 md:h-40 w-[400px] md:w-[500px]"
+              className="h-32 md:h-40 w-[400px] md:w-[500px] text-[var(--text-primary)]"
               style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: 'currentColor',
                 WebkitMaskImage: 'url(/logo.png)',
                 maskImage: 'url(/logo.png)',
                 WebkitMaskSize: 'contain',
