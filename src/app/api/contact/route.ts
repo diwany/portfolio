@@ -34,8 +34,37 @@ export async function POST(req: NextRequest) {
       from: "Portfolio Contact <contact@diwany.me>",
       to: "diwany@proton.me",
       subject: `Portfolio Contact: ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
       replyTo: email,
+      html: `
+        <div style="background-color: #1a1a2e; padding: 40px 20px; font-family: 'Segoe UI', Arial, sans-serif;">
+          <div style="max-width: 560px; margin: 0 auto; background-color: #16162a; border-radius: 16px; padding: 32px; border: 1px solid rgba(255,255,255,0.08);">
+            <h2 style="color: #ffffff; font-size: 22px; margin: 0 0 24px 0; text-align: center;">
+              New Contact <span style="background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Message</span>
+            </h2>
+
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; color: #a78bfa; font-weight: 600; font-size: 13px; margin-bottom: 8px;">Your Name</label>
+              <div style="background-color: #1e1e38; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 14px 16px; color: #e2e8f0; font-size: 15px;">
+                ${name}
+              </div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; color: #a78bfa; font-weight: 600; font-size: 13px; margin-bottom: 8px;">Your Email</label>
+              <div style="background-color: #1e1e38; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 14px 16px; color: #e2e8f0; font-size: 15px;">
+                <a href="mailto:${email}" style="color: #818cf8; text-decoration: none;">${email}</a>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 8px;">
+              <label style="display: block; color: #a78bfa; font-weight: 600; font-size: 13px; margin-bottom: 8px;">Your Message</label>
+              <div style="background-color: #1e1e38; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 14px 16px; color: #e2e8f0; font-size: 15px; min-height: 100px; white-space: pre-wrap;">
+                ${message}
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
     });
 
     return NextResponse.json(
