@@ -35,14 +35,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://mohameddiwany.com",
+    url: "https://diwany.me",
     title: "Diwany | AI Engineer & Full Stack Developer",
     description:
       "Portfolio of Diwany — Computer Engineering student, AI Engineer, and Full Stack Developer.",
     siteName: "Diwany",
     images: [
       {
-        url: "https://mohameddiwany.com/og-image.png",
+        url: "https://diwany.me/og-image.png",
         width: 1200,
         height: 630,
         alt: "Diwany - AI Engineer & Full Stack Developer",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     description:
       "Portfolio of Diwany — Computer Engineering student, AI Engineer, and Full Stack Developer.",
     creator: "@mohameddiwany",
-    images: ["https://mohameddiwany.com/og-image.png"],
+    images: ["https://diwany.me/og-image.png"],
   },
   robots: {
     index: true,

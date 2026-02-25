@@ -5,7 +5,7 @@ import { MetadataRoute } from "next";
  * Update the base URL to your actual domain.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://mohameddiwany.com";
+  const baseUrl = "https://diwany.me";
 
   return [
     {

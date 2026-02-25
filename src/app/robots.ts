@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://mohameddiwany.com/sitemap.xml",
+    sitemap: "https://diwany.me/sitemap.xml",
   };
 }
