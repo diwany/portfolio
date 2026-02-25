@@ -5,6 +5,7 @@ import SectionWrapper from "./SectionWrapper";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
 import { SiNextdotjs, SiTailwindcss, SiReact, SiPython, SiOpenai, SiTypescript, SiNodedotjs } from "react-icons/si";
 import { IconType } from "react-icons";
+import Image from "next/image";
 
 interface Project {
   title: string;
@@ -30,8 +31,23 @@ const projects: Project[] = [
       { name: "Node.js", icon: SiNodedotjs },
     ],
     liveUrl: "https://veyras.dev",
-    githubUrl: "https://github.com/mohameddiwany/veyras",
+    githubUrl: "",
     image: "/projects/veyras.png",
+    featured: true,
+  },
+  {
+    title: "Portfolio Website",
+    description: "Personal Developer Portfolio",
+    longDescription:
+      "This very portfolio — a modern, animated, and responsive website built to showcase my work, skills, and services. Features smooth scroll animations and dark/light mode.",
+    techStack: [
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "TypeScript", icon: SiTypescript },
+    ],
+    liveUrl: "https://diwany.me",
+    githubUrl: "https://github.com/diwany/portfolio",
+    image: "/projects/portfolio.png",
     featured: true,
   },
   {
@@ -45,24 +61,9 @@ const projects: Project[] = [
       { name: "OpenAI", icon: SiOpenai },
       { name: "Node.js", icon: SiNodedotjs },
     ],
-    liveUrl: "#",
-    githubUrl: "https://github.com/mohameddiwany",
+    liveUrl: "",
+    githubUrl: "",
     image: "/projects/chatbot.png",
-    featured: true,
-  },
-  {
-    title: "Portfolio Website",
-    description: "Personal Developer Portfolio",
-    longDescription:
-      "This very portfolio — a modern, animated, and responsive website built to showcase my work, skills, and services. Features smooth scroll animations and dark/light mode.",
-    techStack: [
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
-      { name: "TypeScript", icon: SiTypescript },
-    ],
-    liveUrl: "#",
-    githubUrl: "https://github.com/mohameddiwany/portfolio",
-    image: "/projects/portfolio.png",
     featured: false,
   },
   {
@@ -75,9 +76,9 @@ const projects: Project[] = [
       { name: "React", icon: SiReact },
       { name: "TypeScript", icon: SiTypescript },
     ],
-    liveUrl: "#",
-    githubUrl: "https://github.com/mohameddiwany",
-    image: "/projects/ml-classifier.png",
+    liveUrl: "",
+    githubUrl: "",
+    image: "/projects/machinelearning.png",
     featured: false,
   },
 ];
@@ -131,13 +132,16 @@ export default function Projects() {
                 project.featured ? "md:col-span-1" : ""
               }`}
             >
-              {/* Project Image Placeholder */}
+              {/* Project Image */}
               <div className="relative h-48 sm:h-56 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-6xl font-bold gradient-text opacity-20">
-                    {project.title.charAt(0)}
-                  </div>
-                </div>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-black/20" />
                 {/* Featured Badge */}
                 {project.featured && (
                   <div className="absolute top-4 right-4 px-3 py-1 rounded-full gradient-bg text-white text-xs font-semibold">
@@ -145,7 +149,9 @@ export default function Projects() {
                   </div>
                 )}
                 {/* Overlay on Hover */}
+                {(project.liveUrl || project.githubUrl) && (
                 <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                  {project.liveUrl && (
                   <motion.a
                     href={project.liveUrl}
                     target="_blank"
@@ -156,6 +162,8 @@ export default function Projects() {
                   >
                     <FiExternalLink size={22} />
                   </motion.a>
+                  )}
+                  {project.githubUrl && (
                   <motion.a
                     href={project.githubUrl}
                     target="_blank"
@@ -166,7 +174,9 @@ export default function Projects() {
                   >
                     <FiGithub size={22} />
                   </motion.a>
+                  )}
                 </div>
+                )}
               </div>
 
               {/* Project Info */}
@@ -206,7 +216,7 @@ export default function Projects() {
           className="text-center mt-12"
         >
           <motion.a
-            href="https://github.com/mohameddiwany"
+            href="https://github.com/diwany"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-3 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all duration-300"

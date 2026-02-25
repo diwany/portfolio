@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import ParticleBackground from "./ParticleBackground";
+import FluidCursor from "./FluidCursor";
+
 
 /**
  * Hero section with animated text, particle background,
@@ -15,8 +16,8 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Particle Background */}
-      <ParticleBackground />
+      {/* Fluid Background */}
+      <FluidCursor />
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--bg-primary)] z-[1]" />
