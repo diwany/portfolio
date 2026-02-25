@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 /**
  * POST /api/contact
- * Handles contact form submissions.
- * In production, integrate with an email service (Resend, SendGrid, etc.)
+ * Handles contact form submissions and sends email via Resend.
  */
 export async function POST(req: NextRequest) {
   try {
@@ -27,25 +29,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ── Integration Point ──
-    // Replace the console.log below with your preferred email service:
-    //
-    // Example with Resend:
-    //   import { Resend } from 'resend';
-    //   const resend = new Resend(process.env.RESEND_API_KEY);
-    //   await resend.emails.send({
-    //     from: 'portfolio@mohameddiwany.com',
-    //     to: 'contact@mohameddiwany.com',
-    //     subject: `Portfolio Contact: ${name}`,
-    //     text: `From: ${name} (${email})\n\n${message}`,
-    //   });
-    //
-    // Example with SendGrid:
-    //   import sgMail from '@sendgrid/mail';
-    //   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    //   await sgMail.send({ ... });
-
-    console.log("📬 New contact form submission:", { name, email, message });
+    // Send email via Resend
+    await resend.emails.send({
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: "diwany@proton.me",
+      subject: `Portfolio Contact: ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      replyTo: email,
+    });
 
     return NextResponse.json(
       { success: true, message: "Message received! I'll get back to you soon." },
