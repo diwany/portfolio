@@ -40,6 +40,14 @@ export const metadata: Metadata = {
     description:
       "Portfolio of Diwany — Computer Engineering student, AI Engineer, and Full Stack Developer.",
     siteName: "Diwany",
+    images: [
+      {
+        url: "https://mohameddiwany.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Diwany - AI Engineer & Full Stack Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -47,6 +55,7 @@ export const metadata: Metadata = {
     description:
       "Portfolio of Diwany — Computer Engineering student, AI Engineer, and Full Stack Developer.",
     creator: "@mohameddiwany",
+    images: ["https://mohameddiwany.com/og-image.png"],
   },
   robots: {
     index: true,
