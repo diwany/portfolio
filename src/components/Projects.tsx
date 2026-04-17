@@ -32,7 +32,7 @@ const projects: Project[] = [
     ],
     liveUrl: "https://veyras.dev",
     githubUrl: "",
-    image: "/projects/veyras.png",
+    image: "/projects/veyra-site.png",
     featured: true,
   },
   {
