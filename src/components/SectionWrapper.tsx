@@ -11,7 +11,7 @@ interface SectionWrapperProps {
 }
 
 /**
- * Wrapper component that adds scroll-triggered fade-in animation to sections.
+ * Section wrapper with a restrained scroll-triggered fade.
  */
 export default function SectionWrapper({
   children,
@@ -19,7 +19,7 @@ export default function SectionWrapper({
   className = "",
 }: SectionWrapperProps) {
   const { ref, inView } = useInView({
-    threshold: 0.1,
+    threshold: 0.12,
     triggerOnce: true,
   });
 
@@ -27,10 +27,10 @@ export default function SectionWrapper({
     <motion.section
       ref={ref}
       id={id}
-      initial={{ opacity: 0, y: 60 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`section-padding ${className}`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={`section ${className}`}
     >
       {children}
     </motion.section>

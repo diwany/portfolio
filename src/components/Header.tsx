@@ -7,29 +7,22 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { BsSun, BsMoon } from "react-icons/bs";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
+  { name: "Work", href: "#work" },
   { name: "Contact", href: "#contact" },
 ];
 
-/**
- * Sticky header with responsive navigation, mobile menu,
- * and dark/light theme toggle.
- */
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  /* Prevent hydration mismatch */
   useEffect(() => setMounted(true), []);
 
-  /* Track scroll position for header blur effect */
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -38,115 +31,89 @@ export default function Header() {
 
   return (
     <motion.header
-      initial={{ y: -100 }}
+      initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         isScrolled
-          ? "bg-[var(--bg-primary)]/80 backdrop-blur-lg shadow-lg border-b border-[var(--border-color)]"
-          : "bg-transparent"
+          ? "border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 md:h-24">
-          {/* Logo */}
-          <motion.a
+      <nav className="container-page">
+        <div className="flex h-16 items-center justify-between md:h-20">
+          {/* Wordmark */}
+          <a
             href="#home"
-            className="inline-flex items-center -ml-14"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="flex items-baseline gap-1 text-lg font-semibold tracking-tight"
           >
-            <div
-              className="h-32 md:h-40 w-[400px] md:w-[500px] text-[var(--text-primary)]"
-              style={{
-                backgroundColor: 'currentColor',
-                WebkitMaskImage: 'url(/logo.png)',
-                maskImage: 'url(/logo.png)',
-                WebkitMaskSize: 'contain',
-                maskSize: 'contain',
-                WebkitMaskRepeat: 'no-repeat',
-                maskRepeat: 'no-repeat',
-                WebkitMaskPosition: 'left center',
-                maskPosition: 'left center',
-              }}
-              aria-label="Diwany"
-            />
-          </motion.a>
+            <span>Diwany</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--fg)]" />
+          </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop nav */}
+          <div className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
-              <motion.a
+              <a
                 key={link.name}
                 href={link.href}
-                className="text-[var(--text-secondary)] hover:text-primary transition-colors duration-300 text-sm font-medium relative group"
-                whileHover={{ y: -2 }}
+                className="text-sm text-[var(--fg-muted)] transition-colors hover:text-[var(--fg)]"
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
-              </motion.a>
+              </a>
             ))}
-
-            {/* Theme Toggle */}
             {mounted && (
-              <motion.button
+              <button
                 onClick={toggleTheme}
-                className="p-2 rounded-full bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-primary hover:text-white transition-all duration-300"
-                whileHover={{ scale: 1.1, rotate: 15 }}
-                whileTap={{ scale: 0.9 }}
                 aria-label="Toggle theme"
+                className="rounded-full border border-[var(--border)] p-2 text-[var(--fg-muted)] transition-colors hover:border-[var(--border-strong)] hover:text-[var(--fg)]"
               >
-                {theme === "dark" ? <BsSun size={18} /> : <BsMoon size={18} />}
-              </motion.button>
+                {theme === "dark" ? <BsSun size={15} /> : <BsMoon size={15} />}
+              </button>
             )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-3">
+          {/* Mobile controls */}
+          <div className="flex items-center gap-2 md:hidden">
             {mounted && (
-              <motion.button
+              <button
                 onClick={toggleTheme}
-                className="p-2 rounded-full bg-[var(--bg-secondary)] text-[var(--text-primary)]"
-                whileTap={{ scale: 0.9 }}
                 aria-label="Toggle theme"
+                className="rounded-full border border-[var(--border)] p-2 text-[var(--fg-muted)]"
               >
-                {theme === "dark" ? <BsSun size={16} /> : <BsMoon size={16} />}
-              </motion.button>
+                {theme === "dark" ? <BsSun size={14} /> : <BsMoon size={14} />}
+              </button>
             )}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-[var(--text-primary)]"
               aria-label="Toggle menu"
+              className="p-2 text-[var(--fg)]"
             >
-              {isMobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+              {isMobileMenuOpen ? <HiX size={22} /> : <HiMenu size={22} />}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-[var(--bg-primary)]/95 backdrop-blur-lg border-b border-[var(--border-color)]"
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden border-b border-[var(--border)] bg-[var(--bg)]/95 backdrop-blur-md md:hidden"
           >
-            <div className="px-4 py-4 space-y-3">
-              {navLinks.map((link, i) => (
-                <motion.a
+            <div className="container-page space-y-1 py-4">
+              {navLinks.map((link) => (
+                <a
                   key={link.name}
                   href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-[var(--text-secondary)] hover:text-primary transition-colors"
+                  className="block py-2 text-[var(--fg-muted)] transition-colors hover:text-[var(--fg)]"
                 >
                   {link.name}
-                </motion.a>
+                </a>
               ))}
             </div>
           </motion.div>

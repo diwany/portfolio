@@ -32,33 +32,33 @@ export async function POST(req: NextRequest) {
     // Send email via Resend
     await resend.emails.send({
       from: "Portfolio Contact <contact@diwany.me>",
-      to: "diwany@proton.me",
+      to: "diwany10@icloud.com",
       subject: `Portfolio Contact: ${name}`,
       replyTo: email,
       html: `
-        <div style="background-color: #0a0a0a; padding: 40px 20px; font-family: 'Segoe UI', Arial, sans-serif;">
-          <div style="max-width: 560px; margin: 0 auto; background-color: #171717; border-radius: 16px; padding: 32px; border: 1px solid #262626;">
-            <h2 style="color: #f5f5f5; font-size: 22px; margin: 0 0 24px 0; text-align: center;">
-              New Contact <span style="color: #ef4444;">Message</span>
+        <div style="background-color: #f6f5f4; padding: 40px 20px; font-family: 'Segoe UI', Arial, sans-serif;">
+          <div style="max-width: 560px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; padding: 32px; border: 1px solid #e7e5e4;">
+            <h2 style="color: #1c1917; font-size: 20px; margin: 0 0 24px 0;">
+              New message from your portfolio
             </h2>
 
             <div style="margin-bottom: 20px;">
-              <label style="display: block; color: #dc2626; font-weight: 600; font-size: 13px; margin-bottom: 8px;">Your Name</label>
-              <div style="background-color: #0a0a0a; border: 1px solid #262626; border-radius: 10px; padding: 14px 16px; color: #f5f5f5; font-size: 15px;">
+              <label style="display: block; color: #a8a29e; font-weight: 600; font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px;">Name</label>
+              <div style="background-color: #f6f5f4; border: 1px solid #e7e5e4; border-radius: 10px; padding: 14px 16px; color: #1c1917; font-size: 15px;">
                 ${name}
               </div>
             </div>
 
             <div style="margin-bottom: 20px;">
-              <label style="display: block; color: #dc2626; font-weight: 600; font-size: 13px; margin-bottom: 8px;">Your Email</label>
-              <div style="background-color: #0a0a0a; border: 1px solid #262626; border-radius: 10px; padding: 14px 16px; color: #f5f5f5; font-size: 15px;">
-                <a href="mailto:${email}" style="color: #f87171; text-decoration: none;">${email}</a>
+              <label style="display: block; color: #a8a29e; font-weight: 600; font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px;">Email</label>
+              <div style="background-color: #f6f5f4; border: 1px solid #e7e5e4; border-radius: 10px; padding: 14px 16px; color: #1c1917; font-size: 15px;">
+                <a href="mailto:${email}" style="color: #1c1917; text-decoration: underline;">${email}</a>
               </div>
             </div>
 
             <div style="margin-bottom: 8px;">
-              <label style="display: block; color: #dc2626; font-weight: 600; font-size: 13px; margin-bottom: 8px;">Your Message</label>
-              <div style="background-color: #0a0a0a; border: 1px solid #262626; border-radius: 10px; padding: 14px 16px; color: #f5f5f5; font-size: 15px; min-height: 100px; white-space: pre-wrap;">
+              <label style="display: block; color: #a8a29e; font-weight: 600; font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px;">Message</label>
+              <div style="background-color: #f6f5f4; border: 1px solid #e7e5e4; border-radius: 10px; padding: 14px 16px; color: #1c1917; font-size: 15px; min-height: 100px; white-space: pre-wrap; line-height: 1.6;">
                 ${message}
               </div>
             </div>

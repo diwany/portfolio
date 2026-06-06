@@ -3,37 +3,27 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import SectionWrapper from "./SectionWrapper";
-import {
-  FiMail,
-  FiMapPin,
-  FiSend,
-  FiCheck,
-  FiAlertCircle,
-} from "react-icons/fi";
+import SectionHeading from "./SectionHeading";
+import { FiSend, FiCheck, FiAlertCircle, FiArrowUpRight } from "react-icons/fi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-/**
- * Contact section with a form and social links.
- */
+const EMAIL = "diwany10@icloud.com";
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
+    "idle"
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
       if (res.ok) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
@@ -48,233 +38,173 @@ export default function Contact() {
     }
   };
 
-  const socials = [
-    { icon: FaGithub, href: "https://github.com/diwany", label: "GitHub" },
-    { icon: FaLinkedin, href: "https://www.linkedin.com/in/diwany/", label: "LinkedIn" },
-  ];
+  const inputClass =
+    "w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-[var(--fg)] placeholder-[var(--fg-subtle)] outline-none transition-colors focus:border-[var(--fg)] focus:ring-2 focus:ring-[var(--ring)]";
 
   return (
-    <SectionWrapper id="contact" className="bg-[var(--bg-secondary)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-primary font-semibold text-sm tracking-widest uppercase"
-          >
-            Reach Out
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+    <SectionWrapper id="contact">
+      <div className="container-page">
+        <SectionHeading
+          index="04"
+          label="Contact"
+          title="Let's build"
+          titleAccent="something"
+        />
+
+        <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr]">
+          {/* Left: invitation + direct links */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3"
+            transition={{ duration: 0.5 }}
+            className="flex flex-col"
           >
-            Get In <span className="gradient-text">Touch</span>
-          </motion.h2>
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="h-1 gradient-bg mx-auto mt-4 rounded-full"
-          />
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-[var(--text-secondary)] mt-6 max-w-xl mx-auto"
-          >
-            Have a project in mind, a question, or just want to say hello?
-            I&apos;d love to hear from you.
-          </motion.p>
-        </div>
+            <p className="max-w-md text-lg leading-relaxed text-[var(--fg-muted)]">
+              Have a problem worth solving, a project in mind, or just want to
+              say hello? The fastest way to reach me is email. I read everything
+              and reply quickly.
+            </p>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
-            {/* Info Cards */}
-            <div className="space-y-4">
+            <a
+              href={`mailto:${EMAIL}`}
+              className="link mt-8 inline-flex w-fit items-center gap-2 text-xl font-medium text-[var(--fg)] sm:text-2xl"
+            >
+              {EMAIL}
+              <FiArrowUpRight size={20} />
+            </a>
+
+            <div className="mt-8 flex items-center gap-4">
               {[
                 {
-                  icon: FiMail,
-                  title: "Email",
-                  value: "diwany@proton.me",
-                  href: "mailto:diwany@proton.me",
+                  icon: FaGithub,
+                  href: "https://github.com/diwany",
+                  label: "GitHub",
                 },
                 {
-                  icon: FiMapPin,
-                  title: "Location",
-                  value: "Available Worldwide (Remote)",
-                  href: null,
+                  icon: FaLinkedin,
+                  href: "https://www.linkedin.com/in/diwany/",
+                  label: "LinkedIn",
                 },
-              ].map((item) => (
-                <motion.div
-                  key={item.title}
-                  whileHover={{ x: 5 }}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border-color)] hover:border-primary/30 transition-all"
+              ].map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="text-[var(--fg-subtle)] transition-colors hover:text-[var(--fg)]"
                 >
-                  <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center flex-shrink-0">
-                    <item.icon className="text-white text-xl" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-[var(--text-muted)]">{item.title}</div>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="text-[var(--text-primary)] font-medium hover:text-primary transition-colors"
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <span className="text-[var(--text-primary)] font-medium">
-                        {item.value}
-                      </span>
-                    )}
-                  </div>
-                </motion.div>
+                  <Icon size={22} />
+                </a>
               ))}
             </div>
 
-            {/* Social Links */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4 text-[var(--text-primary)]">
-                Follow Me
-              </h3>
-              <div className="flex gap-3">
-                {socials.map(({ icon: Icon, href, label }) => (
-                  <motion.a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
-                    whileHover={{ scale: 1.1, y: -3 }}
-                    whileTap={{ scale: 0.9 }}
-                    aria-label={label}
-                  >
-                    <Icon size={22} />
-                  </motion.a>
-                ))}
-              </div>
-            </div>
+            <p className="eyebrow mt-auto pt-10 normal-case tracking-normal">
+              Based in Alexandria, Egypt · Working remotely worldwide
+            </p>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Right: form */}
           <motion.form
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-5"
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="space-y-4"
           >
-            {/* Name */}
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
-              >
-                Your Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                required
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-                className="w-full px-4 py-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-color)] text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                placeholder="John Doe"
-              />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="eyebrow mb-2 block normal-case tracking-normal"
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  className={inputClass}
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="eyebrow mb-2 block normal-case tracking-normal"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  className={inputClass}
+                  placeholder="you@example.com"
+                />
+              </div>
             </div>
 
-            {/* Email */}
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
-              >
-                Your Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                required
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                className="w-full px-4 py-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-color)] text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                placeholder="john@example.com"
-              />
-            </div>
-
-            {/* Message */}
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
+                className="eyebrow mb-2 block normal-case tracking-normal"
               >
-                Your Message
+                Message
               </label>
               <textarea
                 id="message"
                 required
-                rows={5}
+                rows={6}
                 value={formData.message}
                 onChange={(e) =>
                   setFormData({ ...formData, message: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-color)] text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
-                placeholder="Tell me about your project..."
+                className={`${inputClass} resize-none`}
+                placeholder="Tell me a little about what you're working on…"
               />
             </div>
 
-            {/* Submit Button */}
-            <motion.button
+            <button
               type="submit"
               disabled={status === "sending"}
-              className="w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl gradient-bg text-white font-semibold shadow-lg hover:shadow-primary/40 disabled:opacity-60 transition-all duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="btn btn-primary w-full justify-center disabled:opacity-60"
             >
               {status === "sending" && (
                 <>
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Sending...
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-[var(--accent-contrast)]/30 border-t-[var(--accent-contrast)]" />
+                  Sending…
                 </>
               )}
               {status === "idle" && (
                 <>
-                  <FiSend size={18} />
-                  Send Message
+                  <FiSend size={16} />
+                  Send message
                 </>
               )}
               {status === "success" && (
                 <>
-                  <FiCheck size={18} />
-                  Message Sent!
+                  <FiCheck size={16} />
+                  Sent, talk soon
                 </>
               )}
               {status === "error" && (
                 <>
-                  <FiAlertCircle size={18} />
-                  Failed — Try Again
+                  <FiAlertCircle size={16} />
+                  Something went wrong
                 </>
               )}
-            </motion.button>
+            </button>
           </motion.form>
         </div>
       </div>

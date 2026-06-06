@@ -2,155 +2,85 @@
 
 import { motion } from "framer-motion";
 import SectionWrapper from "./SectionWrapper";
-import { FaCode, FaRobot, FaGraduationCap, FaLightbulb } from "react-icons/fa";
+import SectionHeading from "./SectionHeading";
 
-const highlights = [
-  {
-    icon: FaRobot,
-    title: "AI Engineering",
-    description: "Building intelligent systems with NLP, computer vision, and modern AI frameworks.",
-  },
-  {
-    icon: FaCode,
-    title: "Full Stack Development",
-    description: "Creating end-to-end web applications with modern frontend and backend technologies.",
-  },
-  {
-    icon: FaGraduationCap,
-    title: "Computer Engineering",
-    description: "Pursuing a degree in Computer Engineering, combining theory with hands-on practice.",
-  },
-  {
-    icon: FaLightbulb,
-    title: "Problem Solver",
-    description: "Translating complex problems into elegant, scalable software solutions.",
-  },
+const stats = [
+  { value: "50,000+", label: "Messages handled / day" },
+  { value: "5,000+", label: "Bookings processed / day" },
+  { value: "12+", label: "Businesses shipped for" },
 ];
 
-/**
- * About section with personal introduction and highlight cards.
- */
 export default function About() {
   return (
     <SectionWrapper id="about">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-primary font-semibold text-sm tracking-widest uppercase"
-          >
-            Get to Know Me
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+      <div className="container-page">
+        <SectionHeading
+          index="01"
+          label="About"
+          title="A bit"
+          titleAccent="about me"
+        />
+
+        <div className="grid gap-16 lg:grid-cols-[1.4fr_1fr]">
+          {/* Bio */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3"
+            transition={{ duration: 0.5 }}
+            className="space-y-5 text-lg leading-relaxed text-[var(--fg-muted)]"
           >
-            About <span className="gradient-text">Me</span>
-          </motion.h2>
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="h-1 gradient-bg mx-auto mt-4 rounded-full"
-          />
-        </div>
-
-        {/* Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed">
-              I&apos;m <strong className="text-[var(--text-primary)]">Mohamed Diwany</strong>,
-              a Computer Engineering student and freelance developer with a deep passion
-              for artificial intelligence and full-stack web development.
-            </p>
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed">
-              I specialize in building AI-powered tools, modern web applications, and
-              robust APIs. My work spans from designing intuitive user interfaces to
-              engineering intelligent backend systems that solve real-world problems.
-            </p>
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed">
-              As the founder of{" "}
+            <p>
+              I&apos;m a 2026 Computer Engineering graduate who builds AI
+              products and gets them in front of real users. Most of my time
+              goes into{" "}
               <a
                 href="https://veyras.dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary hover:underline font-medium"
+                className="link font-medium text-[var(--fg)]"
               >
-                Veyras.dev
+                Veyra
               </a>
-              , I lead an AI agency that delivers cutting-edge solutions for businesses —
-              from custom chatbots and automation workflows to full-scale web platforms.
+              , the AI automation agency I co-founded, where I own the
+              technical side end to end, from the first client conversation
+              through to a deployed product.
             </p>
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed">
-              When I&apos;m not coding, I&apos;m exploring the latest research in machine learning,
-              contributing to open-source projects, or mentoring aspiring developers.
+            <p>
+              The flagship is a WhatsApp assistant built on Node.js and OpenAI&apos;s
+              models. It reads a customer&apos;s plain-language message, turns it
+              into a clean, validated booking with no one in the loop, and now
+              handles{" "}
+              <span className="text-[var(--fg)]">
+                50,000+ messages and 5,000+ bookings a day
+              </span>{" "}
+              across live client accounts.
             </p>
-
-            {/* Quick Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-4">
-              {[
-                { value: "10+", label: "Projects" },
-                { value: "2+", label: "Years Exp." },
-                { value: "5+", label: "Satisfied Clients" },
-              ].map((stat) => (
-                <motion.div
-                  key={stat.label}
-                  whileHover={{ scale: 1.05 }}
-                  className="text-center p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)]"
-                >
-                  <div className="text-2xl md:text-3xl font-bold gradient-text">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-[var(--text-muted)] mt-1">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <p>
+              I work mostly in Python and TypeScript across the web and AI stack.
+              And before any of this, a few years in a client-facing role taught
+              me to keep things clear and calm when a project gets messy. Which,
+              honestly, is half the job.
+            </p>
           </motion.div>
 
-          {/* Highlight Cards */}
+          {/* Stats */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid sm:grid-cols-2 gap-4"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex flex-col justify-center divide-y divide-[var(--border)]"
           >
-            {highlights.map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="p-6 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] hover:border-primary/50 transition-all duration-300 group"
-              >
-                <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <item.icon className="text-white text-xl" />
+            {stats.map((stat) => (
+              <div key={stat.label} className="py-5 first:pt-0 last:pb-0">
+                <div className="text-3xl font-semibold tracking-tight md:text-4xl">
+                  {stat.value}
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-[var(--text-primary)]">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                  {item.description}
-                </p>
-              </motion.div>
+                <div className="eyebrow mt-2 normal-case tracking-normal">
+                  {stat.label}
+                </div>
+              </div>
             ))}
           </motion.div>
         </div>

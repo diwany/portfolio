@@ -1,137 +1,129 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TypeAnimation } from "react-type-animation";
+import { FiArrowDown, FiArrowUpRight } from "react-icons/fi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import FluidCursor from "./FluidCursor";
 
+const fade = {
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+};
 
 /**
- * Hero section with animated text, particle background,
- * social links, and a CTA button.
+ * Hero: calm, editorial, content-first.
+ * Subtle dotted backdrop replaces the old WebGL fluid cursor.
  */
 export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen items-center overflow-hidden"
     >
-      {/* Fluid Background */}
-      <FluidCursor />
+      {/* Subtle backdrop */}
+      <div className="pointer-events-none absolute inset-0 grid-backdrop opacity-70" />
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--bg-primary)] z-[1]" />
-
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-4 leading-tight"
-        >
-          Hi, I&apos;m{" "}
-          <span className="gradient-text">Mohamed Diwany</span>
-        </motion.h1>
-
-        {/* Animated Subtitle */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-xl sm:text-2xl md:text-3xl font-semibold text-[var(--text-secondary)] mb-6 h-10"
-        >
-          <TypeAnimation
-            sequence={[
-              "AI Engineer",
-              2000,
-              "Full Stack Developer",
-              2000,
-              "Computer Engineering Student",
-              2000,
-              "Freelance Developer",
-              2000,
-            ]}
-            wrapper="span"
-            speed={50}
-            repeat={Infinity}
-            className="gradient-text"
-          />
-        </motion.div>
-
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="max-w-2xl mx-auto text-[var(--text-secondary)] text-base sm:text-lg mb-10 leading-relaxed"
-        >
-          I build intelligent applications, modern web experiences, and
-          AI-powered solutions. Passionate about transforming ideas into
-          impactful digital products.
-        </motion.p>
-
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex items-center justify-center mb-12"
-        >
-          <motion.a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full gradient-bg text-white font-semibold shadow-lg hover:shadow-primary/40 transition-all duration-300"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
+      <div className="container-page relative z-10 w-full">
+        <div className="max-w-3xl">
+          <motion.p
+            {...fade}
+            transition={{ duration: 0.5 }}
+            className="eyebrow flex items-center gap-2"
           >
-            Let&apos;s Talk
-          </motion.a>
-        </motion.div>
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--fg)]" />
+            Alexandria, Egypt · Available for work
+          </motion.p>
 
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="flex items-center justify-center gap-5"
-        >
-          {[
-            { icon: FaGithub, href: "https://github.com/diwany", label: "GitHub" },
-            { icon: FaLinkedin, href: "https://www.linkedin.com/in/diwany/", label: "LinkedIn" },
-          ].map(({ icon: Icon, href, label }) => (
-            <motion.a
-              key={label}
-              href={href}
+          <motion.h1
+            {...fade}
+            transition={{ duration: 0.6, delay: 0.05 }}
+            className="mt-6 text-5xl leading-[1.05] tracking-tight sm:text-6xl md:text-7xl"
+          >
+            <span className="font-semibold">Mohamed Diwany</span>
+            <br />
+            <span className="font-display italic text-[var(--fg-muted)]">
+              AI &amp; software engineer
+            </span>
+          </motion.h1>
+
+          <motion.p
+            {...fade}
+            transition={{ duration: 0.6, delay: 0.12 }}
+            className="mt-7 max-w-xl text-lg leading-relaxed text-[var(--fg-muted)]"
+          >
+            I build AI products and actually ship them. I run{" "}
+            <a
+              href="https://veyras.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-primary hover:text-white transition-all duration-300"
-              whileHover={{ scale: 1.15, y: -3 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label={label}
+              className="link font-medium text-[var(--fg)]"
             >
-              <Icon size={22} />
-            </motion.a>
-          ))}
-        </motion.div>
+              Veyra
+            </a>
+            , a small AI automation agency, including a WhatsApp assistant that
+            now handles{" "}
+            <span className="text-[var(--fg)]">50,000+ messages a day</span> for
+            live clients.
+          </motion.p>
 
+          <motion.div
+            {...fade}
+            transition={{ duration: 0.6, delay: 0.18 }}
+            className="mt-9 flex flex-wrap items-center gap-3"
+          >
+            <a href="#contact" className="btn btn-primary">
+              Get in touch
+            </a>
+            <a href="#work" className="btn btn-ghost">
+              View work
+              <FiArrowUpRight size={16} />
+            </a>
+          </motion.div>
+
+          <motion.div
+            {...fade}
+            transition={{ duration: 0.6, delay: 0.24 }}
+            className="mt-10 flex items-center gap-5"
+          >
+            {[
+              { icon: FaGithub, href: "https://github.com/diwany", label: "GitHub" },
+              {
+                icon: FaLinkedin,
+                href: "https://www.linkedin.com/in/diwany/",
+                label: "LinkedIn",
+              },
+            ].map(({ icon: Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="text-[var(--fg-subtle)] transition-colors hover:text-[var(--fg)]"
+              >
+                <Icon size={20} />
+              </a>
+            ))}
+          </motion.div>
+        </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
+      {/* Scroll cue */}
+      <motion.a
+        href="#about"
+        aria-label="Scroll to about"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"
+        transition={{ delay: 1 }}
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[var(--fg-subtle)]"
       >
-        <motion.div
-          animate={{ y: [0, 12, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-[var(--text-muted)] flex justify-center pt-2"
+        <motion.span
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="block"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-        </motion.div>
-      </motion.div>
+          <FiArrowDown size={18} />
+        </motion.span>
+      </motion.a>
     </section>
   );
 }

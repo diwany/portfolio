@@ -1,97 +1,76 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaHeart } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FiMail } from "react-icons/fi";
 
-/**
- * Footer with branding, social links, and navigation.
- */
+const links = [
+  { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
+  { name: "Work", href: "#work" },
+  { name: "Contact", href: "#contact" },
+];
+
+const socials = [
+  { icon: FaGithub, href: "https://github.com/diwany", label: "GitHub" },
+  {
+    icon: FaLinkedin,
+    href: "https://www.linkedin.com/in/diwany/",
+    label: "LinkedIn",
+  },
+  { icon: FiMail, href: "mailto:diwany10@icloud.com", label: "Email" },
+];
+
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[var(--border-color)] bg-[var(--bg-primary)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-3 gap-8 items-center">
-          {/* Brand */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <a href="#home" className="inline-block -ml-16 -mb-14">
-              <div
-                className="h-36 w-[550px]"
-                style={{
-                  backgroundColor: '#D62424',
-                  WebkitMaskImage: 'url(/logo.png)',
-                  maskImage: 'url(/logo.png)',
-                  WebkitMaskSize: 'contain',
-                  maskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  maskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'left center',
-                  maskPosition: 'left center',
-                }}
-                aria-label="Diwany"
-              />
+    <footer className="border-t border-[var(--border)]">
+      <div className="container-page py-12">
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+          <div>
+            <a
+              href="#home"
+              className="flex items-baseline gap-1 text-lg font-semibold tracking-tight"
+            >
+              <span>Diwany</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--fg)]" />
             </a>
-            <p className="text-sm text-[var(--text-muted)] mt-2 max-w-xs">
-              AI Engineer & Full Stack Developer building the future one line of code at a time.
+            <p className="mt-2 max-w-xs text-sm text-[var(--fg-muted)]">
+              AI &amp; software engineer building products that ship.
             </p>
-          </motion.div>
+          </div>
 
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex flex-wrap justify-center gap-6"
-          >
-            {["Home", "About", "Skills", "Projects", "Contact"].map((link) => (
+          <nav className="flex flex-wrap gap-x-6 gap-y-2">
+            {links.map((l) => (
               <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
-                className="text-sm text-[var(--text-secondary)] hover:text-primary transition-colors"
+                key={l.name}
+                href={l.href}
+                className="text-sm text-[var(--fg-muted)] transition-colors hover:text-[var(--fg)]"
               >
-                {link}
+                {l.name}
               </a>
             ))}
-          </motion.div>
+          </nav>
 
-          {/* Socials */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex justify-end gap-3"
-          >
-            {[
-              { icon: FaGithub, href: "https://github.com/diwany" },
-              { icon: FaLinkedin, href: "https://www.linkedin.com/in/diwany/" },
-            ].map(({ icon: Icon, href }, i) => (
-              <motion.a
-                key={i}
+          <div className="flex items-center gap-4">
+            {socials.map(({ icon: Icon, href, label }) => (
+              <a
+                key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:bg-primary hover:text-white transition-all duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                aria-label={label}
+                className="text-[var(--fg-subtle)] transition-colors hover:text-[var(--fg)]"
               >
                 <Icon size={18} />
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
+          </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-[var(--border-color)] mt-8 pt-8 text-center">
-          <p className="text-sm text-[var(--text-muted)] flex items-center justify-center gap-1">
-            &copy; {currentYear} Diwany. Built with{" "}
-            <FaHeart className="text-red-500 text-xs" /> using Next.js &
-            Tailwind CSS.
-          </p>
+        <div className="mt-10 flex flex-col gap-2 border-t border-[var(--border)] pt-6 text-xs text-[var(--fg-subtle)] sm:flex-row sm:items-center sm:justify-between">
+          <p className="mono">© {year} Mohamed Diwany</p>
+          <p className="mono">Built with Next.js &amp; Tailwind CSS</p>
         </div>
       </div>
     </footer>
